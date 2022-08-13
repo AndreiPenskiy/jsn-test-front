@@ -15,6 +15,7 @@ export default function HeroesList() {
     const location = useLocation();
     
     const totalHeroCount = heroes?.data.heroCount;
+    const imageStore = "http://localhost:3001/static/";
 
     const handleChangePage = (e, newPage) => {
         setPaginarionPage(newPage)
@@ -34,14 +35,14 @@ export default function HeroesList() {
             <Section>
                 <List>
                     {heroes?.data.result.map(hero => {
-                        let imgSrc = "http://localhost:3001/static/";
                         const heroSrc = hero.image;
-                        imgSrc += heroSrc;
+                        let imageSrc = imageStore;
+                        imageSrc += heroSrc;
 
                         return (
                             <ListItem key={hero._id}>
                                 <NavLink to={`/superheroes/${hero._id}`} state={{ from: location }} style={{ textDecoration: 'none' }}>
-                                    <HeroImage src={imgSrc} alt="hero" />
+                                    <HeroImage src={imageSrc} alt="hero" />
                                     <HeroNickname>{hero.nickname}</HeroNickname>
                                 </NavLink>
                             </ListItem>
